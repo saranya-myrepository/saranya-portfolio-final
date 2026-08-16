@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saranya.M — Data Analyst | Business Analyst</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/final-tuning.css">
+
+
+<style>
+/* =========================================================
+   FINAL INDEX-ONLY TUNING
+   ========================================================= */
+
+:root {
+  --container-blue: #b9d2f2;
+  --container-blue-strong: #8eb6e8;
+  --deep-blue: #0d3b78;
+  --bright-blue: #1769e0;
+  --skills-green: #0b6b57;
+}
+
+/* Navigation: more visible and readable */
+.nav-links {
+  gap: 27px !important;
+}
+
+.nav-links a {
+  color: #102a43 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.nav-links a:hover {
+  color: #1769e0 !important;
+}
+
+/* Technology cards replacing the old numeric stats */
+.stats {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 12px !important;
+  margin-top: 25px !important;
+}
+
+.stat {
+  background: #f7fbff !important;
+  border: 1px solid var(--container-blue) !important;
+  border-top: 3px solid var(--bright-blue) !important;
+  border-radius: 13px !important;
+  padding: 16px 12px !important;
+  text-align: center !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+
+.stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(23, 105, 224, .10);
+}
+
+.stat-value {
+  color: var(--deep-blue) !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.stat-label {
+  color: #42566c !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-top: 3px;
+}
+
+/* All main containers get a professional blue-shaded outline */
+.hero-card,
+.skill-card,
+.project-card,
+.education-card,
+.leadership-card,
+.cert,
+.contact-box {
+  border-color: var(--container-blue) !important;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.education-card:hover,
+.leadership-card:hover,
+.cert:hover {
+  border-color: var(--container-blue-strong) !important;
+}
+
+/* Skills cards */
+.skill-card {
+  border-top: 3px solid #a9c8ed !important;
+}
+
+/* Project titles: deep blue */
+.project-card h3 {
+  color: var(--deep-blue) !important;
+}
+
+.project-card:hover h3 {
+  color: #0a4f9e !important;
+}
+
+/* "Skills demonstrated" must visually stand out */
+.project-skills {
+  margin-top: 18px !important;
+  padding: 11px 13px !important;
+  background: #f0f8f5 !important;
+  border: 1px solid #b9ded4 !important;
+  border-radius: 9px !important;
+  color: #1d4d42 !important;
+}
+
+.skills-demonstrated-label {
+  color: var(--skills-green) !important;
+  font-weight: 800 !important;
+  letter-spacing: .01em;
+}
+
+/* Clear project-category separators */
+.project-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 20px;
+}
+
+.project-section-heading h3 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--deep-blue);
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.section-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, #9fc3ec, #dce9f7);
+}
+
+.project-section-heading .section-line:first-child {
+  background: linear-gradient(to left, #9fc3ec, #dce9f7);
+}
+
+/* Leadership container */
+.leadership-card {
+  background: #ffffff !important;
+  border: 1px solid var(--container-blue) !important;
+  border-left: 4px solid var(--bright-blue) !important;
+  box-shadow: 0 8px 25px rgba(15, 42, 67, .05);
+}
+
+/* Slightly stronger general body readability */
+.hero-summary,
+.project-description,
+.timeline-item ul,
+.leadership-card ul,
+.profile-box p,
+.education-card p {
+  color: #17212b !important;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .project-section-heading h3 {
+    font-size: 19px;
+  }
+
+  .section-line {
+    min-width: 20px;
+  }
+}
+
+
+/* =========================================================
+   PROJECT SCANNABILITY + FULL DESCRIPTION MODAL
+   Keeps the existing project card design and layout.
+   ========================================================= */
+.project-summary {
+  margin: 14px 0 0 18px !important;
+  padding: 0 !important;
+  color: #17212b !important;
+}
+
+.project-summary li {
+  margin: 7px 0 !important;
+  padding-left: 3px !important;
+  line-height: 1.55 !important;
+}
+
+.project-summary strong {
+  color: var(--deep-blue) !important;
+  font-weight: 800 !important;
+}
+
+.project-note {
+  margin-top: 12px !important;
+  color: #526579 !important;
+  font-size: 11px !important;
+  font-style: italic !important;
+}
+
+.read-project-btn {
+  border: 0 !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  font: inherit !important;
+  color: var(--deep-blue) !important;
+  padding: 0 !important;
+}
+
+.read-project-btn:hover {
+  color: var(--bright-blue) !important;
+}
+
+.project-full-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 24, 42, .58);
+}
+
+.project-full-overlay.show {
+  display: flex;
+}
+
+.project-full-content {
+  position: relative;
+  width: min(760px, 94vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid var(--container-blue);
+  border-radius: 18px;
+  padding: 30px 32px;
+  box-shadow: 0 22px 70px rgba(8, 24, 42, .22);
+}
+
+.project-full-content h3 {
+  margin: 0 40px 18px 0;
+  color: var(--deep-blue);
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+}
+
+.project-full-content p {
+  margin: 0 0 14px;
+  color: #17212b;
+  line-height: 1.7;
+}
+
+.project-full-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: #42566c;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.project-full-close:hover {
+  color: var(--deep-blue);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FINAL TARGETED REFINEMENTS
+   Only the requested visual/content adjustments.
+   ========================================================= */
+
+/* Internship skills: one clean aligned line with blue bullets */
+.internship-skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin-top: 14px;
+  color: #1769e0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.internship-skills span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.internship-skills span:not(:last-child)::after {
+  content: "•";
+  margin: 0 10px;
+  color: #1769e0;
+  font-size: 13px;
+}
+
+/* About: professional blue bullets/arrows */
+.about-bullets {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-bullets li {
+  position: relative;
+  margin: 0 0 13px;
+  padding-left: 24px;
+  color: #17212b;
+}
+
+.about-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1769e0;
+  font-weight: 800;
+}
+
+/* Leadership should visually match project cards */
+.leadership-card.project-card {
+  background: #ffffff !important;
+  border: 1px solid var(--container-blue) !important;
+  border-left: 1px solid var(--container-blue) !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.leadership-card.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--container-blue-strong) !important;
+  box-shadow: 0 10px 30px rgba(15, 42, 67, .07) !important;
+}
+
+.ieee-highlight {
+  color: var(--deep-blue);
+  font-weight: 800;
+}
+
+/* Leadership skills remain highlighted like project skills */
+.leadership-card .leadership-skills,
+.leadership-card .experience-stack {
+  color: #1769e0;
+  font-weight: 700;
+}
+
+.leadership-card .leadership-skills span,
+.leadership-card .experience-stack span {
+  color: #1769e0;
+}
+
+/* Project category headings: centered between two lines */
+.project-category-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin: 50px 0 24px;
+}
+
+.project-category-heading h3 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--deep-blue);
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 800;
+  text-align: center;
+}
+
+.project-category-heading .section-line {
+  height: 1px;
+  flex: 1;
+  background: #b9d2f2;
+}
+
+@media (max-width: 700px) {
+  .internship-skills span {
+    white-space: normal;
+  }
+
+  .project-category-heading {
+    gap: 10px;
+  }
+
+  .project-category-heading h3 {
+    font-size: 20px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <div class="logo">SARANYA.M</div>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="profile-photo">
+        <img src="C:\Users\ELCOT\Downloads\saranya-portfolio-final\assets\images\Profile_Saranya.jpeg" alt="Saranya.M profile photo" onerror="this.style.display='none'; this.parentElement.innerHTML='PROFILE<br>PHOTO';">
+      </div>
+      <div class="hero-content">
+        <div class="hero-name-line">
+          <h1>Saranya.M</h1>
+          <span class="hero-designation">Data Analyst / Business Analyst</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-summary">
+          <span>Data-driven problem solver focused on transforming raw data into clear, actionable business insights.
+                Hands-on experience across SQL, Python, Excel, Power BI, machine learning and data-driven application development.
+                Strong foundation in analytics, business intelligence, statistical reasoning and translating business requirements into technical solutions.
+          </span>
+        </div>
+        <div class="hero-location">Bengaluru, Karnataka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+
+    <div class="profile-box">
+        <ul class="about-bullets">
+          <li>Data Analyst with hands-on experience in business intelligence, predictive analytics and data visualization through internships and academic projects.</li>
+          <li>Experienced in Python, SQL, Excel and Power BI, with practical work involving dashboards, data cleaning, analytics, business reporting and machine-learning workflows.</li>
+          <li>Comfortable translating business requirements into analytical solutions and presenting insights through clear, KPI-driven reporting.</li>
+        </ul>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">Python</div>
+        <div class="stat-label">Analytics & ML</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-value">Power BI</div>
+        <div class="stat-label">Business Intelligence</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-value">Excel</div>
+        <div class="stat-label">Advanced Analytics</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-value">MySQL</div>
+        <div class="stat-label">SQL & Data Analysis</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-value">AWS</div>
+        <div class="stat-label">Cloud Fundamentals</div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills &amp; Tech Stack</h2>
+    <div class="skill-grid">
+
+      <!-- DATA ANALYTICS -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Data Analytics</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="SQL / MySQL"
+                  data-info="Solved 200+ business-oriented SQL problems using joins, self-joins, subqueries, correlated subqueries, aggregation, window functions, ranking and KPI calculations.">
+            SQL / MySQL
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Python (Pandas, NumPy)"
+                  data-info="Used Python with Pandas and NumPy for exploratory data analysis, data cleaning, preprocessing and feature engineering across internship and project work.">
+            Python (Pandas, NumPy)
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Excel (Power Query, Pivot Tables, XLOOKUP)"
+                  data-info="Used Excel for data preparation, reporting and analysis, including Power Query, Pivot Tables and XLOOKUP-based data handling.">
+            Excel (Power Query, Pivot Tables, XLOOKUP)
+          </button>
+
+          <button class="skill-tag"
+                  data-title="EDA & Data Cleaning"
+                  data-info="Applied exploratory data analysis and data-cleaning workflows including missing-value handling, duplicate checks, data-type validation, outlier analysis and pattern identification.">
+            EDA &amp; Data Cleaning
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- BUSINESS INTELLIGENCE -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Business Intelligence</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Power BI"
+                  data-info="Built 5+ analytical dashboards across fraud, mortgage, customer, transaction, student, education and quick-commerce domains.">
+            Power BI
+          </button>
+
+          <button class="skill-tag"
+                  data-title="DAX"
+                  data-info="Created dashboard measures and KPI calculations using DAX for customer, fraud, lending, transaction, education and operational analysis.">
+            DAX
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Data Modeling / Star Schema"
+                  data-info="Applied dimensional modelling and star-schema concepts using fact and dimension tables, including the School Analytics and Quick-Commerce projects.">
+            Data Modeling / Star Schema
+          </button>
+
+          <button class="skill-tag"
+                  data-title="KPI Design"
+                  data-info="Designed business-focused KPI cards and measures to monitor performance, risk, customer behaviour, lending and operational metrics.">
+            KPI Design
+          </button>
+
+          <button class="skill-tag"
+                  data-title="RLS"
+                  data-info="Worked with Row-Level Security concepts in Power BI for controlling access to report data.">
+            RLS
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- MACHINE LEARNING & AI -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Machine Learning &amp; AI</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Scikit-learn"
+                  data-info="Used for supervised machine-learning workflows including model training, preprocessing and evaluation.">
+            Scikit-learn
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Linear Regression"
+                  data-info="Applied linear regression for predictive modelling and evaluated model performance using regression metrics.">
+            Linear Regression
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Classification / Regression"
+                  data-info="Worked with both classification and regression workflows through supervised machine-learning projects and the DataMentor platform.">
+            Classification / Regression
+          </button>
+
+          <button class="skill-tag"
+                  data-title="RAG"
+                  data-info="Implemented Retrieval-Augmented Generation in the Banking Chatbot to retrieve relevant information from a banking knowledge base.">
+            RAG
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Sentence Transformers"
+                  data-info="Used Sentence Transformers to generate embeddings for semantic retrieval in the Banking RAG Chatbot.">
+            Sentence Transformers
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- BACKEND & API DEVELOPMENT -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Backend &amp; API Development</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Flask"
+                  data-info="Used Flask across multiple backend and application projects including the Banking Chatbot, Payment Gateway, DevTrack and data-driven applications.">
+            Flask
+          </button>
+
+          <button class="skill-tag"
+                  data-title="REST APIs"
+                  data-info="Developed and worked with REST API workflows across backend applications and frontend-backend integrations.">
+            REST APIs
+          </button>
+
+          <button class="skill-tag"
+                  data-title="JWT Authentication"
+                  data-info="Implemented JWT-based authentication for secure authenticated application workflows.">
+            JWT Authentication
+          </button>
+
+          <button class="skill-tag"
+                  data-title="MySQL"
+                  data-info="Used MySQL as the relational database layer across backend applications and data-driven projects.">
+            MySQL
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Postman"
+                  data-info="Used Postman to test, validate and troubleshoot REST API workflows.">
+            Postman
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- STATISTICS & RESEARCH -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Statistics &amp; Research</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Hypothesis Testing"
+                  data-info="Applied hypothesis-testing concepts for evaluating evidence and relationships in statistical analysis.">
+            Hypothesis Testing
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Statistical Modeling"
+                  data-info="Applied statistical modelling concepts to analytical and predictive problems.">
+            Statistical Modeling
+          </button>
+
+          <button class="skill-tag"
+                  data-title="RMSE / R²"
+                  data-info="Used RMSE and R-squared to evaluate regression-model performance and assess predictive fit.">
+            RMSE / R²
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- BUSINESS & PROFESSIONAL -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Business &amp; Professional</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Requirements Gathering"
+                  data-info="Gathered and understood client and business requirements and translated them into analytical and technical deliverables.">
+            Requirements Gathering
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Stakeholder Communication"
+                  data-info="Communicated requirements, findings and deliverables with technical and non-technical stakeholders.">
+            Stakeholder Communication
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Business KPI Analysis"
+                  data-info="Defined and interpreted business KPIs to support dashboard reporting, performance analysis and decision-making.">
+            Business KPI Analysis
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- CLOUD, DATA PLATFORMS & TOOLS -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Cloud, Data Platforms &amp; Tools</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="AWS"
+                  data-info="AWS Cloud Practitioner certification provides formal cloud fundamentals validation.">
+            AWS
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Git / GitHub"
+                  data-info="Used Git and GitHub for version control, repository management and project development workflows.">
+            Git / GitHub
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- DATA ENGINEERING & ARCHITECTURE -->
+      <div class="skill-card">
+        <div class="skill-card-header"><h3>Data Engineering &amp; Architecture</h3></div>
+        <div class="tags">
+
+          <button class="skill-tag"
+                  data-title="Star Schema"
+                  data-info="Applied star-schema modelling in analytical dashboard projects using fact and dimension tables.">
+            Star Schema
+          </button>
+
+          <button class="skill-tag"
+                  data-title="Fact / Dimension Tables"
+                  data-info="Worked with fact and dimension table structures to organise analytical data models.">
+            Fact / Dimension Tables
+          </button>
+
+          <button class="skill-tag"
+                  data-title="ETL"
+                  data-info="Applied extraction, transformation and preparation concepts throughout data-cleaning and analytics workflows.">
+            ETL
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <article class="timeline-item"><div class="period">Feb 2026 – Aug 2026</div><h3>Data Analyst Intern</h3><div class="organization">NMIT Solutions · Bengaluru</div><ul>
+        <li>Engaged with fintech clients through site visits to gather and document business requirements, translating stakeholder needs into analytical and technical deliverables.</li>
+        <li>Built a Payment Gateway Simulation System using <span class="inline-skill">Flask</span>, <span class="inline-skill">MySQL</span> and <span class="inline-skill">JWT</span>, replicating merchant onboarding, OTP-based card payment verification, transaction ledger management and webhook event notifications.</li>
+        <li>Developed DevTrack, a full-stack ticket management system supporting <span class="inline-skill">Admin, Developer and Client roles</span>, issue lifecycle tracking, comment threads and stakeholder-facing reporting dashboards.</li>
+        <li>Designed security architecture using <span class="inline-skill">password hashing</span>, <span class="inline-skill">RBAC</span>, the <span class="inline-skill">Luhn Algorithm</span> for card validation and protected API middleware.</li>
+        <li>Validated application workflows end-to-end using <span class="inline-skill">Postman</span>.</li>
+        <li>Worked with fintech and housing-finance analytical data and business reporting requirements, strengthening <span class="inline-skill">SQL, Power BI, Excel, DAX and data modelling</span> capabilities.</li>
+      </ul><div class="internship-skills">
+          <span>Requirements Gathering</span>
+          <span>SQL</span>
+          <span>Power BI</span>
+          <span>DAX</span>
+          <span>Excel</span>
+          <span>Flask</span>
+          <span>MySQL</span>
+          <span>JWT</span>
+          <span>REST APIs</span>
+          <span>Postman</span>
+          <span>RBAC</span>
+          <span>GitHub</span>
+        </div></article>
+
+      <article class="timeline-item"><div class="period">Apr 2025 – May 2025</div><h3>Data Science Intern</h3><div class="organization">Venus Solutions</div><ul>
+        <li>Developed a House Price Prediction model using <span class="inline-skill">Python</span> and <span class="inline-skill">Scikit-learn</span>, covering data cleaning, feature engineering, model training and evaluation using <span class="inline-skill">RMSE and R-squared</span>.</li>
+        <li>Deployed the prediction model as a <span class="inline-skill">Flask</span> web application for real-time predictions.</li>
+        <li>Analysed financial datasets for local loan systems to identify <span class="inline-skill">credit risk patterns and lending trends</span>.</li>
+        <li>Built interactive data dashboards using Flask to visualize financial KPIs.</li>
+        <li>Queried and processed education-sector datasets using <span class="inline-skill">MySQL and Microsoft Excel</span>, delivering structured analytical reports.</li>
+        <li>Communicated data findings to non-technical stakeholders through clear visualizations and presentations.</li>
+      </ul><div class="internship-skills">
+          <span>Python</span>
+          <span>Scikit-learn</span>
+          <span>Flask</span>
+          <span>MySQL</span>
+          <span>Excel</span>
+          <span>EDA</span>
+          <span>Feature Engineering</span>
+          <span>Financial Analytics</span>
+          <span>Dashboarding</span>
+        </div></article>
+
+      <article class="timeline-item"><div class="period">Oct 2024 – Nov 2024</div><h3>Data Science Intern</h3><div class="organization">Prodigy</div><ul>
+        <li>Performed comprehensive <span class="inline-skill">EDA, data cleaning and preprocessing</span> on real-world datasets using Python, Pandas and NumPy.</li>
+        <li>Worked with missing values, outliers and structural inconsistencies to improve data quality and analysis readiness.</li>
+        <li>Used Python-based analytical and visualization workflows to derive and communicate actionable insights.</li>
+        <li>Applied data profiling and validation concepts during exploratory analysis.</li>
+      </ul><div class="internship-skills">
+          <span>Python</span>
+          <span>Pandas</span>
+          <span>NumPy</span>
+          <span>EDA</span>
+          <span>Data Cleaning</span>
+          <span>Data Profiling</span>
+          <span>Data Validation</span>
+          <span>Visualization</span>
+        </div></article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-group-title">Analytics &amp; Business Intelligence</div>
+
+    <div class="project-list">
+
+      <!-- FRAUD ANALYTICS -->
+      <article class="project-card featured-project">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Analytics Dashboard</span>
+            <h3>Fraud Analytics Dashboard</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Power BI" data-info="Interactive dashboard and visual analytics for fraud exposure and risk monitoring.">Power BI</button>
+          <button class="stack-tag" data-title="DAX" data-info="Measures and KPI calculations for fraud cases, customers, fraud rate and average fraud amount.">DAX</button>
+          <button class="stack-tag" data-title="Data Modeling" data-info="Structured analytical model supporting customer, loan, fraud, location and time analysis.">Data Modeling</button>
+          <button class="stack-tag" data-title="Business Analysis" data-info="Translated fraud data into risk-oriented business indicators and decision-support insights.">Business Analysis</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Built a Power BI dashboard to monitor fraudulent loan activity across customers, loan products, fraud types, cities and time periods.</li>
+          <li>Tracked <strong>Total Fraud Cases, Fraud Customers, Fraud Rate and Average Fraud Amount</strong> as core risk KPIs.</li>
+          <li>Identified an overall <strong>~8% fraud rate</strong> and analysed fraud distribution across categories, products and locations.</li>
+          <li>Used DAX, slicers and analytical visuals to support high-risk segment identification and fraud monitoring.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Fraud Analytics · Customer Analysis · Transaction Analysis · Credit Analysis · KPI Design · Business Storytelling</div>
+
+        <div class="project-note">Built on a synthetic/practice dataset for portfolio purposes.</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/fraud-analytics-powerbi-dashboard" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <template id="full-fraud">
+          <h3>Fraud Analytics Dashboard</h3>
+          <p>The Fraud Analytics Dashboard was developed in Power BI to monitor fraudulent loan activity and identify patterns across customers, loan products, fraud types, cities, and time periods. Key KPIs include Total Fraud Cases, Fraud Customers, Fraud Rate, and Average Fraud Amount, providing stakeholders with a consolidated view of fraud exposure and risk.</p>
+          <p>The dashboard uses DAX measures, interactive slicers, and multiple analytical visualizations to analyse fraud distribution and trends. Findings indicate an overall fraud rate of approximately 8%, with fraud cases distributed across multiple fraud categories, loan products, and locations.</p>
+          <p>The dashboard helps identify high-risk segments, monitor changes in fraud activity over time, and support fraud investigation and risk-management decisions. Since the project uses a sample dataset, observed trends are treated as analytical findings rather than confirmed real-world causes.</p>
+        </template>
+      </article>
+
+
+      <!-- MORTGAGE ANALYTICS -->
+      <article class="project-card featured-project">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Financial Analytics Dashboard</span>
+            <h3>Mortgage Customer &amp; Loan Portfolio Analytics Dashboard</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Power BI" data-info="Interactive mortgage customer, affordability and loan portfolio reporting.">Power BI</button>
+          <button class="stack-tag" data-title="DAX" data-info="Customer, portfolio, affordability, credit and lending-risk measures.">DAX</button>
+          <button class="stack-tag" data-title="Data Modeling" data-info="Structured mortgage customer and loan data for portfolio and risk analysis.">Data Modeling</button>
+          <button class="stack-tag" data-title="Excel" data-info="Supporting data preparation and analytical work.">Excel</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Analysed customer profiles, mortgage portfolio value, borrowing capacity, affordability and lending risk.</li>
+          <li>Tracked <strong>49,990 customers</strong>, approximately <strong>$33.16B total loan value</strong>, $663.42K average loan amount and 760.37 average credit score.</li>
+          <li>Built KPIs for interest rate, high-credit customers, high-debt customers, LTI, DTI and average down payment.</li>
+          <li>Used DAX, slicers, KPI cards, treemaps, ribbon charts, scatter plots and other visuals for portfolio and risk analysis.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Mortgage Analytics · Loan Portfolio Analysis · Customer Analytics · Affordability Analysis · Credit Risk · Financial KPI Analysis</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/mortgage-analytics-dashboard" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <div class="project-note">Note: Portfolio values and findings are based on a synthetic/practice dataset.</div>
+
+        <template id="full-mortgage">
+          <h3>Mortgage Customer &amp; Loan Portfolio Analytics Dashboard</h3>
+          <p>The Mortgage Customer &amp; Loan Portfolio Analytics Dashboard was developed in Power BI to analyse customer profiles, mortgage portfolio value, borrowing capacity, affordability, and lending risk. Key KPIs include Total Customers, Total Loan Amount, Average Loan Amount, Average Credit Score, Average Interest Rate, High Credit Customers, High Debt Customers, Loan-to-Income Ratio, Debt-to-Income Ratio, and Average Down Payment %.</p>
+          <p>The dashboards provide insights into customer distribution, income and loan relationships, credit quality, debt exposure, repayment behaviour, and employment patterns.</p>
+          <p>The solution uses DAX measures and interactive slicers with KPI cards, bar charts, donut charts, treemaps, ribbon charts, and scatter plots to support portfolio and risk analysis.</p>
+          <p>Key findings include 49,990 customers, approximately $33.16B in total loan value, a $663.42K average loan amount, a 760.37 average credit score, and a 5.10% average interest rate, with no customers classified as poor credit. The dashboard converts mortgage data into actionable insights for portfolio monitoring, customer analysis, affordability assessment, and lending risk evaluation.</p>
+          <p><strong>Dataset note:</strong> These figures are derived from a synthetic/practice dataset and should not be interpreted as real-world mortgage portfolio values.</p>
+        </template>
+      </article>
+
+
+      <!-- SWIGGY INSTAMART -->
+      <article class="project-card featured-project">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Quick-Commerce Analytics</span>
+            <h3>Swiggy Instamart Operational &amp; Customer Insights Dashboard</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Power BI" data-info="End-to-end quick-commerce dashboard development and interactive reporting.">Power BI</button>
+          <button class="stack-tag" data-title="DAX" data-info="15+ analytical measures and business KPI calculations.">DAX</button>
+          <button class="stack-tag" data-title="Data Modeling" data-info="Four-table relational model across Orders, Delivery, Products and Inventory.">Data Modeling</button>
+          <button class="stack-tag" data-title="Synthetic Data" data-info="Synthetic transactional data used to simulate quick-commerce operations.">Synthetic Data</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Developed a Power BI solution covering <strong>17 business KPIs</strong> across sales, customer behaviour, fulfilment, delivery and inventory.</li>
+          <li>Built a relational model across <strong>Orders, Products, Delivery and Inventory</strong> tables with 15+ DAX measures.</li>
+          <li>Analysed top reordered products, on-time delivery, out-of-stock risk, quarterly order trends, category demand and city-wise revenue.</li>
+          <li>Used KPI cards, treemap, gauge, donut, line charts and slicers for operational monitoring and business storytelling.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Sales Analytics · Customer Behaviour · Delivery Performance · Inventory Analytics · KPI Design · Operational Monitoring</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/Swiggy-Instamart-Operational-Customer-Insights-Dashboard" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <div class="project-note">Note: The dashboard uses synthetic data created for portfolio analysis.</div>
+
+        <template id="full-swiggy">
+          <h3>Swiggy Instamart Operational &amp; Customer Insights Dashboard</h3>
+          <p>The Swiggy Instamart Operational &amp; Customer Insights Dashboard was developed in Power BI to analyse sales performance, order fulfilment, delivery operations, inventory availability, and customer purchasing behaviour.</p>
+          <p>Key KPIs include Total Order Amount, Total Orders, Average Sales, Items Sold, Average Items per Order, Orders Delivered, Delayed and Cancelled Orders, On-Time Delivery %, and Out-of-Stock Products. The dashboard also provides city-wise sales and delivery-distance analysis, quarterly order trends, category-wise purchasing preferences, and top reordered products.</p>
+          <p>The dashboard uses a structured data model with separate Orders, Delivery, Products, and Inventory tables, supported by DAX measures using SUM, COUNT, DISTINCTCOUNT, DIVIDE, and CALCULATE. Interactive slicers, KPI cards, line charts, bar charts, treemaps, donut charts, and gauge visuals support trend analysis, comparisons, and operational monitoring.</p>
+          <p>The solution converts transactional data into actionable insights around customer demand, delivery efficiency, product performance, and inventory risks.</p>
+          <p><strong>Dataset note:</strong> The dashboard uses synthetic data created to simulate quick-commerce operations for portfolio and analytical practice.</p>
+        </template>
+      </article>
+
+
+      <!-- STUDENT ADMINISTRATION -->
+      <article class="project-card featured-project">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Education Analytics</span>
+            <h3>Student &amp; Administration Analytics Dashboards</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Power BI" data-info="Four interactive education and administration dashboards.">Power BI</button>
+          <button class="stack-tag" data-title="DAX" data-info="Education-domain KPI and analytical measures.">DAX</button>
+          <button class="stack-tag" data-title="Star Schema" data-info="Student, Teacher and Date dimensions with Admission and Attendance facts.">Star Schema</button>
+          <button class="stack-tag" data-title="Data Modeling" data-info="Relationships across student, admission, attendance, teacher and date entities.">Data Modeling</button>
+          <button class="stack-tag" data-title="Excel" data-info="Student and admission data preparation.">Excel</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Developed a School Management Analytics solution covering student profiles, admissions, financial performance, attendance and faculty information.</li>
+          <li>Designed a <strong>star schema</strong> with Student, Teacher and Date dimensions and Admission and Attendance fact tables.</li>
+          <li>Created four dashboards: Executive Summary, Admission Analytics, Student Profile Analytics, and Attendance &amp; Faculty Performance.</li>
+          <li>Analysed demographics, admission trends, revenue, scholarships, fee status, attendance patterns, teacher profiles and school operations.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Student Analytics · Admission Analytics · Financial Analysis · Attendance Analytics · Faculty Analytics · KPI Design</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/student-administration-analytics-dashboard" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <template id="full-student">
+          <h3>Student &amp; Administration Analytics Dashboards</h3>
+          <p>Developed an interactive School Management Analytics Dashboard in Power BI to analyse student profiles, admissions, financial performance, attendance, and faculty information. The project uses a star schema with Student, Teacher, and Date as dimension tables and Admission and Attendance as fact tables.</p>
+          <p>Created four dashboards — Executive Summary, Admission Analytics, Student Profile Analytics, and Attendance &amp; Faculty Performance — using DAX measures, KPI cards, slicers, and interactive visualizations.</p>
+          <p>The dashboards provide insights into student demographics, admission trends, revenue, scholarships, fee status, attendance patterns, teacher profiles, and overall school operations.</p>
+        </template>
+      </article>
+
+
+      <!-- SQL -->
+      <article class="project-card featured-project">
+        <div class="project-top">
+          <div>
+            <span class="project-type">SQL Analytics</span>
+            <h3>SQL Business Analytics Practice</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="MySQL" data-info="Primary relational database and query environment used for analytical problem solving.">MySQL</button>
+          <button class="stack-tag" data-title="Advanced SQL" data-info="Joins, subqueries, aggregation, date/string functions and analytical query logic.">Advanced SQL</button>
+          <button class="stack-tag" data-title="Window Functions" data-info="Ranking and partition-based analytical logic.">Window Functions</button>
+          <button class="stack-tag" data-title="Joins" data-info="Inner, left, right, self and multi-table joins.">Joins</button>
+          <button class="stack-tag" data-title="Subqueries" data-info="Nested and correlated business queries.">Subqueries</button>
+          <button class="stack-tag" data-title="Aggregations" data-info="GROUP BY, HAVING and aggregate functions for reporting and KPI calculations.">Aggregations</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Solved <strong>200+ real-world SQL business problems</strong> across employee, department, payroll and organisational datasets.</li>
+          <li>Applied joins, self-joins, correlated subqueries, aggregate functions, date/string functions and ranking logic.</li>
+          <li>Covered department reporting, salary-band analysis, employee-manager hierarchies, hiring trends and business KPIs.</li>
+          <li>Strengthened query design and business-problem translation for Data Analyst and Business Analyst scenarios.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Business Problem Solving · Query Design · Data Analysis · Ranking Analysis · Hierarchy Analysis · KPI Calculations</div>
+
+
+        <template id="full-sql">
+          <h3>SQL Business Analytics Practice</h3>
+          <p>Solved more than 200 real-world SQL business problems across employee, department, payroll, and organisational datasets, applying joins, self-joins, correlated subqueries, aggregate functions, date and string functions, and rank-based filtering logic.</p>
+          <p>The practice included department-wise reporting, salary-band analysis, employee-manager hierarchy mapping, hiring-trend analysis, and business KPI calculations. The work was focused on translating business questions into structured SQL queries and interpreting the resulting data.</p>
+          <p>The exercises reinforced practical analytical SQL skills used in Data Analyst and Business Analyst technical interviews, including relationship handling, aggregation, filtering, ranking, hierarchy analysis and NULL-aware query reasoning.</p>
+        </template>
+      </article>
+
+    </div>
+
+
+    <div class="project-section-heading project-category-heading">
+      <span class="section-line"></span>
+      <h3>Machine Learning, AI &amp; Computer Vision</h3>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="project-list">
+
+      <!-- DATAMENTOR -->
+      <article class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Machine Learning</span>
+            <h3>DataMentor — No-Code Machine Learning Platform</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Python" data-info="Core programming language for the analytical and machine-learning workflow.">Python</button>
+          <button class="stack-tag" data-title="Flask" data-info="Web application and backend layer.">Flask</button>
+          <button class="stack-tag" data-title="Scikit-learn" data-info="Supervised classification and regression workflows.">Scikit-learn</button>
+          <button class="stack-tag" data-title="Automated EDA" data-info="Automated data profiling, exploratory analysis and preprocessing.">Automated EDA</button>
+          <button class="stack-tag" data-title="LLM Integration" data-info="LLM-powered assistant for explaining dataset and model results in plain language.">LLM Integration</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Built a web-based no-code platform for supervised machine learning, reducing manual coding for common analytical workflows.</li>
+          <li>Automated EDA, data profiling, missing-value and outlier handling, preprocessing and model-ready data preparation.</li>
+          <li>Supported classification and regression workflows with business-aligned interpretation of model outputs.</li>
+          <li>Integrated an LLM assistant to explain dataset behaviour, model logic and results in plain language.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> EDA · Data Preprocessing · Feature Engineering · Classification · Regression · Model Interpretation</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/Data_Mentor" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <template id="full-datamentor">
+          <h3>DataMentor — No-Code Machine Learning Platform</h3>
+          <p>Developed a web-based no-code supervised machine-learning platform designed to enable non-technical users to upload datasets, perform automated exploratory data analysis, handle missing values and outliers, train classification and regression models, and generate business-aligned interpretation reports.</p>
+          <p>The platform brings data preparation, exploratory analysis and model development into a single workflow, reducing the amount of manual coding required for common supervised machine-learning tasks.</p>
+          <p>Integrated an LLM-powered assistant to translate dataset behaviour, model logic and analytical results into plain-language explanations, helping bridge technical machine-learning workflows with business stakeholders and decision-support use cases.</p>
+        </template>
+      </article>
+
+
+      <!-- PROOF -->
+      <article class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-type">Computer Vision</span>
+            <h3>PROOF — Deepfake Detection &amp; Media Integrity System</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Python" data-info="Core development language for the computer-vision pipeline.">Python</button>
+          <button class="stack-tag" data-title="LBP" data-info="Local Binary Patterns for texture-level manipulation cues.">LBP</button>
+          <button class="stack-tag" data-title="Gabor Filters" data-info="Texture analysis for manipulation anomalies.">Gabor Filters</button>
+          <button class="stack-tag" data-title="OpenCV" data-info="Image and video processing.">OpenCV</button>
+          <button class="stack-tag" data-title="Facial Landmarks" data-info="Facial-region analysis for manipulation anomalies.">Facial Landmarks</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Built a modular deepfake detection pipeline using LBP, Gabor filters and facial landmark analysis.</li>
+          <li>Targeted manipulation anomalies in <strong>eyes, iris and skin texture</strong> at video level.</li>
+          <li>Designed interpretable detection logic that identifies specific manipulation cues rather than only returning a generic classification.</li>
+          <li>Focused on explainability, robustness against high-quality synthetic media and forensic media authenticity.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Computer Vision · Deepfake Detection · Feature Extraction · Texture Analysis · Explainable Detection</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://lnkd.in/p/dfhtYXEq" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <template id="full-proof">
+          <h3>PROOF — Deepfake Detection &amp; Media Integrity System</h3>
+          <p>Built a modular deepfake detection pipeline using Local Binary Patterns (LBP), Gabor filters, and facial landmark analysis to detect video-level manipulation anomalies in eyes, iris, and skin texture with targeted specificity.</p>
+          <p>Developed an interpretable model architecture that pinpoints specific manipulation cues rather than relying only on a generic deepfake classification output. This approach improves the explainability of the detection process and supports forensic media authenticity analysis.</p>
+          <p>The project focuses on analysing visual artefacts that can indicate manipulated media and on making the detection result more interpretable for authenticity-focused use cases.</p>
+        </template>
+      </article>
+
+    </div>
+
+
+    <div class="project-section-heading project-category-heading">
+      <span class="section-line"></span>
+      <h3>AI Applications</h3>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="project-list">
+
+      <!-- BANKING RAG -->
+      <article class="project-card">
+        <div class="project-top">
+          <div>
+            <span class="project-type">AI Application</span>
+            <h3>Secure AI-Based Banking RAG Chatbot</h3>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <button class="stack-tag" data-title="Flask" data-info="Backend framework for the banking application and REST APIs.">Flask</button>
+          <button class="stack-tag" data-title="MySQL" data-info="Relational database for application and banking data.">MySQL</button>
+          <button class="stack-tag" data-title="JWT" data-info="JWT-based authentication and protected access.">JWT</button>
+          <button class="stack-tag" data-title="RAG" data-info="Retrieval-Augmented Generation for knowledge-base question answering.">RAG</button>
+          <button class="stack-tag" data-title="Sentence Transformers" data-info="Embedding generation for semantic retrieval.">Sentence Transformers</button>
+          <button class="stack-tag" data-title="REST APIs" data-info="JSON-based frontend/backend communication.">REST APIs</button>
+        </div>
+
+        <ul class="project-summary">
+          <li>Engineered a secure multi-user banking chatbot with <strong>Admin/User JWT role-based authentication</strong>.</li>
+          <li>Protected 10+ REST endpoints covering chat, balance, statement and profile workflows.</li>
+          <li>Implemented RAG using sentence-transformer embeddings and cosine-similarity search for contextual FAQ retrieval.</li>
+          <li>Designed the MySQL schema and HTML/CSS/JavaScript frontend for authenticated banking interactions.</li>
+        </ul>
+
+        <div class="project-skills"><span class="skills-demonstrated-label">Skills demonstrated:</span> Semantic Search · Knowledge Retrieval · Contextual Question Answering · Secure Chatbot Development · API Integration</div>
+
+        <div class="project-actions">
+          <a class="project-link read-project-btn" href="https://github.com/saranya-myrepository/AI_UseCase" target="_blank" rel="noopener noreferrer">View Project →</a>
+        </div>
+
+        <template id="full-banking">
+          <h3>Secure AI-Based Banking RAG Chatbot</h3>
+          <p>The Banking RAG Chatbot was developed using Flask, MySQL, HTML, CSS, and JavaScript to provide secure and interactive banking assistance. The system includes user registration and login, JWT-based authentication, role-based authorization, protected APIs, and banking services such as account information and transaction details.</p>
+          <p>The application uses a modular backend structure with separate routes, authentication, service, and database layers. The frontend communicates with backend REST APIs through JavaScript, while JWT tokens secure authenticated requests.</p>
+          <p>The chatbot uses Retrieval-Augmented Generation with sentence-transformer embeddings and cosine similarity-based search to retrieve relevant answers from a structured banking knowledge base. The project demonstrates API development, authentication, database integration, semantic retrieval and secure multi-user chatbot functionality.</p>
+        </template>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+
+    <div class="education-grid">
+
+      <div class="education-card">
+        <h3>M.Sc. Data Science</h3>
+        <div class="degree">Christ University, Bengaluru</div>
+        <p>2026 · First Class · CGPA 8.77/10</p>
+      </div>
+
+      <div class="education-card">
+        <h3>B.Sc. Mathematics</h3>
+        <div class="degree">Government Arts College</div>
+        <p>2024 · First Class Distinction · 75.71%</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     LEADERSHIP
+     ========================================================= -->
+
+<section id="leadership">
+  <div class="container">
+
+    <h2 class="section-title">Leadership</h2>
+
+    <div
+      class="leadership-card project-card"
+      style="
+        background: #ffffff !important;
+        border: 1px solid var(--container-blue) !important;
+        border-left: 1px solid var(--container-blue) !important;
+        border-radius: 18px !important;
+        box-shadow: none !important;
+      "
+    >
+
+      <div class="project-top">
+        <div>
+          <h3>
+            Treasurer,
+            <span style="color: var(--deep-blue); font-weight: 800;">
+              IEEE Student Chapter
+            </span>
+          </h3>
+        </div>
+      </div>
+
+      <p class="project-description">
+        Christ University, Bengaluru · Jan 2025 – Apr 2026
+      </p>
+
+      <p class="project-description">
+        IEEE
+      </p>
+
+      <ul
+        style="
+          margin: 18px 0 20px;
+          padding-left: 22px;
+          color: #17212b;
+          line-height: 1.7;
+        "
+      >
+        <li>
+          Managed chapter treasury and maintained accurate financial records
+          across flagship technical events.
+        </li>
+
+        <li>
+          Coordinated allocated budgets across a 12-member core committee
+          covering event logistics, design and operations.
+        </li>
+
+        <li>
+          Led end-to-end event execution including poster design,
+          team coordination and on-ground management.
+        </li>
+
+        <li>
+          Planned and coordinated budgets for technical events,
+          workshops and seminars across three academic semesters.
+        </li>
+
+        <li>
+          Collaborated with the IEEE core committee to organise technical
+          activities supporting student professional development and
+          technology engagement.
+        </li>
+      </ul>
+
+      <!-- Skills Learned -->
+      <div
+        style="
+          margin-top: 18px;
+          padding-top: 16px;
+          border-top: 1px solid #d9e7f7;
+        "
+      >
+
+        <div
+          style="
+            color: var(--deep-blue);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 10px;
+          "
+        >
+          Skills Learned
+        </div>
+
+        <ul
+          style="
+            margin: 0;
+            padding-left: 20px;
+            color: #1769e0;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.8;
+          "
+        >
+          <li>Budget Management</li>
+          <li>Team Coordination</li>
+          <li>Event Planning</li>
+          <li>Financial Records</li>
+          <li>Leadership</li>
+          <li>Communication</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="certificates">
+  <div class="container">
+    <h2 class="section-title">Certificates</h2>
+
+    <div class="cert-list">
+
+      <div class="cert">
+        <div>
+          <div class="cert-name">AWS Certified Cloud Practitioner</div>
+          <div class="cert-issuer">Udemy</div>
+        </div>
+        <div class="cert-dot"></div>
+      </div>
+
+      <div class="cert">
+        <div>
+          <div class="cert-name">Full Stack Web Development</div>
+          <div class="cert-issuer">Udemy</div>
+        </div>
+        <div class="cert-dot"></div>
+      </div>
+
+      <div class="cert">
+        <div>
+          <div class="cert-name">Python Programming</div>
+          <div class="cert-issuer">CSC</div>
+        </div>
+        <div class="cert-dot"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT - SEPARATE -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">Let's Connect</h2>
+
+    <div class="contact-box">
+      <div>
+        <h2>Saranya.M</h2>
+        <p>
+          Data Analyst / Business Analyst
+        </p>
+
+        <!-- Replace resume.pdf with your actual resume file -->
+        <a class="resume" href="C:\Users\ELCOT\Downloads\saranya-portfolio-final\assets\documents\MSaranya5.pdf" download>
+          Download Resume →
+        </a>
+      </div>
+
+      <div class="contact-links">
+        <a href="mailto:saranyamani921@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/saranya-m-ds-analytics" target="_blank">LinkedIn</a>
+        <a href="https://github.com/saranya-myrepository" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+
+<footer>
+  © 2026 Saranya.M · Data Analyst | Business Analyst
+</footer>
+
+
+<!-- FULL PROJECT DESCRIPTION MODAL -->
+<div class="project-full-overlay" id="projectFullOverlay" aria-hidden="true">
+  <div class="project-full-content">
+    <button class="project-full-close" id="projectFullClose" aria-label="Close">×</button>
+    <div id="projectFullBody"></div>
+  </div>
+</div>
+
+<!-- CLICKED SKILL / TECH STACK MODAL -->
+<div class="zoom-overlay" id="zoomOverlay">
+  <div class="zoom-content">
+    <button class="zoom-close" id="zoomClose" aria-label="Close">×</button>
+    <h3 id="zoomTitle"></h3>
+    <p id="zoomInfo"></p>
+  </div>
+</div>
+
+
+<script>
+/* =========================================================
+   INDEX-ONLY INTERACTIONS
+   ========================================================= */
+
+const clickableTags = document.querySelectorAll(".skill-tag, .stack-tag");
+const overlay = document.getElementById("zoomOverlay");
+const zoomTitle = document.getElementById("zoomTitle");
+const zoomInfo = document.getElementById("zoomInfo");
+const zoomClose = document.getElementById("zoomClose");
+
+function openZoom(tag) {
+  clickableTags.forEach((item) => item.classList.remove("active"));
+  tag.classList.add("active");
+
+  zoomTitle.textContent = tag.dataset.title || tag.textContent.trim();
+  zoomInfo.textContent =
+    tag.dataset.info || "This technology is part of the portfolio skill stack.";
+
+  overlay.classList.add("show");
+  overlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeZoom() {
+  overlay.classList.remove("show");
+  overlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  clickableTags.forEach((item) => item.classList.remove("active"));
+}
+
+clickableTags.forEach((tag) => {
+  tag.addEventListener("click", () => openZoom(tag));
+});
+
+zoomClose.addEventListener("click", closeZoom);
+
+overlay.addEventListener("click", (event) => {
+  if (event.target === overlay) closeZoom();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeZoom();
+});
+</script>
+
+
+<script>
+/* =========================================================
+   FULL PROJECT DESCRIPTION INTERACTIONS
+   ========================================================= */
+const projectButtons = document.querySelectorAll(".read-project-btn");
+const projectFullOverlay = document.getElementById("projectFullOverlay");
+const projectFullBody = document.getElementById("projectFullBody");
+const projectFullClose = document.getElementById("projectFullClose");
+
+projectButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const key = button.dataset.project;
+    const template = document.getElementById(`full-${key}`);
+    if (!template) return;
+
+    projectFullBody.innerHTML = template.innerHTML;
+    projectFullOverlay.classList.add("show");
+    projectFullOverlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  });
+});
+
+function closeProjectDescription() {
+  projectFullOverlay.classList.remove("show");
+  projectFullOverlay.setAttribute("aria-hidden", "true");
+  projectFullBody.innerHTML = "";
+  document.body.classList.remove("modal-open");
+}
+
+projectFullClose.addEventListener("click", closeProjectDescription);
+projectFullOverlay.addEventListener("click", (event) => {
+  if (event.target === projectFullOverlay) closeProjectDescription();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeProjectDescription();
+});
+</script>
+
+</body>
+</html>
